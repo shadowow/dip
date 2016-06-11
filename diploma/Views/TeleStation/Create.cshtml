@@ -2,7 +2,6 @@
 
     @{
         ViewBag.Title = "Добавление АТС";
-        //IEnumerable<diploma.Models.Core.Address> addresses = (IEnumerable<diploma.Models.Core.Address>)ViewData["addresses"];
     }
 
     <h2>Добавление АТС</h2>
@@ -18,16 +17,8 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 <label class="control-label col-md-2">Адрес</label>
-                <!--div class="col-md-10">
-                    <select id="address" name="address" class="form-control">
-                        @*foreach (var address in Model) {
-                            <option value="@address.ID">@address.District р-н, @address.Street, @address.Building, @address.PostOffice</option>
-                        }*@
-                    </select>
-                </div-->
                 <div class="col-md-10">
-                    @Html.DropDownList("Addresses")
-                    @*Html.DropDownList("address", new SelectList((IEnumerable<diploma.Models.Core.Address>)ViewData["addresses"]));*@
+                    @Html.DropDownList("Addresses", ViewBag.Addresses as SelectList, new { @class = "form-control" } )
                 </div>
             </div>
 
