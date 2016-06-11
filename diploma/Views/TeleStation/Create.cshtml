@@ -1,44 +1,48 @@
-﻿@model diploma.Models.Core.TeleStation
+﻿@model IEnumerable<diploma.Models.Core.Address>
 
-@{
-    ViewBag.Title = "Добавление АТС";
-}
+    @{
+        ViewBag.Title = "Добавление АТС";
+        //IEnumerable<diploma.Models.Core.Address> addresses = (IEnumerable<diploma.Models.Core.Address>)ViewData["addresses"];
+    }
 
-<h2>Добавление АТС</h2>
+    <h2>Добавление АТС</h2>
 
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>АТС</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label class="control-label col-md-2">Почтовый индекс</label>
-            <div class="col-md-10">
-                <select name="address" class="form-control">
-                    @foreach(var address in model)
-                </select>
+    @using (Html.BeginForm("Create", "TeleStation", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
 
-                @Html.EditorFor(model => model.PostOffice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PostOffice, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <h4>АТС</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">Адрес</label>
+                <!--div class="col-md-10">
+                    <select id="address" name="address" class="form-control">
+                        @*foreach (var address in Model) {
+                            <option value="@address.ID">@address.District р-н, @address.Street, @address.Building, @address.PostOffice</option>
+                        }*@
+                    </select>
+                </div-->
+                <div class="col-md-10">
+                    @Html.DropDownList("Addresses")
+                    @*Html.DropDownList("address", new SelectList((IEnumerable<diploma.Models.Core.Address>)ViewData["addresses"]));*@
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добавить" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Добавить" class="btn btn-default" />
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("К списку АТС", "Index")
+  
 </div>
+    }
+    <div>
+        @Html.ActionLink("К списку АТС", "Index")
+    </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

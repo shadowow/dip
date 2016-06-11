@@ -1,6 +1,7 @@
 ﻿using diploma.Models.Core;
 using NHibernate;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -31,8 +32,16 @@ namespace diploma.Controllers
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var t = session.QueryOver<Address>().List();
-                return View(t);
+                 var addresses = session.QueryOver<Address>().List();
+                // ViewData["addresses"] = t;
+                List<SelectListItem> items = new List<SelectListItem>();
+                foreach (Address a in addresses)
+                {
+                    items.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString() });
+                }
+                
+                ViewBag.Addresses = items;
+                return View();
             }
         }
 
@@ -43,7 +52,15 @@ namespace diploma.Controllers
             try
             {
                 // TODO: Add insert logic here
-
+                using (ISession session = NHibernateHelper.OpenSession())
+                {
+                    Address address = session.Get<Address>(int.Parse(collection.Get("Addresses")));
+                    TeleStation teleStation = new TeleStation();
+                    teleStation.Address = address;
+                    ITransaction tr = session.BeginTransaction();
+                    session.Save(teleStation);
+                    tr.Commit();
+                }
                 return RedirectToAction("Index");
             }
             catch
