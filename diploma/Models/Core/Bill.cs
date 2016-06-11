@@ -10,7 +10,6 @@ namespace diploma.Models.Core
     {
         public virtual int Number { get; set; }
         public virtual Client Client { get; set; }
-        public virtual DateTime Date { get; set; }
     }
 }
 
@@ -20,6 +19,5 @@ public class BillMap : ClassMap<diploma.Models.Core.Bill>
     {
         Id(x => x.Number).GeneratedBy.Increment();
         References(x => x.Client).Cascade.All();
-        Map(x => x.Date);
     }
 }

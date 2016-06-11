@@ -19,7 +19,6 @@ namespace diploma.Models.Core
         public virtual Person LegalEntity { get; set; }
 
         public virtual ISet<Debt> Debts { get; set; }
-        public virtual ISet<FinishedTariff> TariffsStory { get; set; }
         public virtual ISet<Call> CallsStory { get; set; }
         public virtual ISet<Bill> Bills { get; set; }
 
@@ -29,7 +28,6 @@ namespace diploma.Models.Core
         public Client()
         {
             Debts = new HashSet<Debt>();
-            TariffsStory = new HashSet<FinishedTariff>();
             CallsStory = new HashSet<Call>();
             Bills = new HashSet<Bill>();
         }
@@ -51,7 +49,6 @@ public class ClientMap : ClassMap<diploma.Models.Core.Client>
 
         HasMany(x => x.Bills).Inverse();
         HasMany(x => x.Debts).Inverse();
-        HasMany(x => x.TariffsStory).Inverse();
         HasMany(x => x.CallsStory).Inverse();
     }
 }

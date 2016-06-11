@@ -212,7 +212,6 @@
     <Compile Include="Models\Core\Call.cs" />
     <Compile Include="Models\Core\Client.cs" />
     <Compile Include="Models\Core\Debt.cs" />
-    <Compile Include="Models\Core\FinishedTariff.cs" />
     <Compile Include="Models\Core\Person.cs" />
     <Compile Include="Models\Core\PhysPerson.cs" />
     <Compile Include="Models\Core\Tariff.cs" />

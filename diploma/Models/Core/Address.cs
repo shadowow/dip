@@ -27,6 +27,11 @@ namespace diploma.Models.Core
             Clients = new HashSet<Client>();
             Stations = new HashSet<TeleStation>();
         }
+
+        public override string ToString()
+        {
+            return PostOffice + ", " + District + " р-н, " + Street + ", " + Building + ", " + Extra;
+        }
     }
 
 }

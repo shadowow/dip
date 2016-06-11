@@ -11,7 +11,9 @@ namespace diploma.Models.Core
         public virtual int ID { get; set; }
         public virtual string Surname { get; set; }
         public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
+        public virtual string Patronimyc { get; set; }
+        public virtual string PassportNumber { get; set; }
+        public virtual int SerialNumber { get; set; }
         public virtual string PlaceOfIssue { get; set; }
         public virtual DateTime DateOfIssue { get; set; }
         public virtual Address CurrentAddress { get; set; }
@@ -30,7 +32,9 @@ public class PhysPersonMap : ClassMap<diploma.Models.Core.PhysPerson>
         Id(x => x.ID).GeneratedBy.Increment();
         Map(x => x.Surname);
         Map(x => x.FirstName);
-        Map(x => x.LastName);
+        Map(x => x.Patronimyc);
+        Map(x => x.PassportNumber);
+        Map(x => x.SerialNumber);
         Map(x => x.PlaceOfIssue);
         Map(x => x.DateOfIssue);
         References(x => x.CurrentAddress).Cascade.All();
