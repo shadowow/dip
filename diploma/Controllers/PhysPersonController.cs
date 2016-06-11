@@ -29,7 +29,41 @@ namespace diploma.Controllers
         // GET: PhysPerson/Create
         public ActionResult Create()
         {
-            return View();
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var addresses = session.QueryOver<Address>().List();
+                List<SelectListItem> itemsAddr = new List<SelectListItem>();
+                List<SelectListItem> itemsRegAddr = new List<SelectListItem>();
+                foreach (Address a in addresses)
+                {
+                    itemsAddr.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString() });
+                    itemsRegAddr.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString() });
+                }
+                ViewBag.LivingAddresses = itemsAddr;
+                ViewBag.RegistrationAddresses = itemsRegAddr;
+
+                var stations = session.QueryOver<TeleStation>().List();
+                List<SelectListItem> itemsStation = new List<SelectListItem>();
+                foreach (TeleStation a in stations)
+                {
+                    itemsStation.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString() });
+                }
+                ViewBag.Stations = itemsStation;
+
+                var tariffs = session.QueryOver<Tariff>().List();
+                List<SelectListItem> itemsTariff = new List<SelectListItem>();
+                foreach (Tariff a in tariffs)
+                {
+                    itemsTariff.Add(new SelectListItem { Text = a.Name, Value = a.ID.ToString() });
+                }
+                ViewBag.Tariffs = itemsTariff;
+                ViewData["Stations"] = itemsStation;
+                ViewData["Tariffs"] = itemsTariff;
+                ViewData["LivingAddresses"] = itemsAddr;
+                ViewData["RegistrationAddresses"] = itemsRegAddr;
+
+                return View();
+            }
         }
 
         // POST: PhysPerson/Create
@@ -39,7 +73,32 @@ namespace diploma.Controllers
             try
             {
                 // TODO: Add insert logic here
+                using (ISession session = NHibernateHelper.OpenSession())
+                {
+                    Address livAddress = session.Get<Address>(int.Parse(collection.Get("LivingAddresses")));
+                    Address regAddress = session.Get<Address>(int.Parse(collection.Get("RegistrationAddresses")));
+                    TeleStation station = session.Get<TeleStation>(int.Parse(collection.Get("Stations")));
+                    Tariff tariff = session.Get<Tariff>(int.Parse(collection.Get("Tariffs")));
 
+                    Client client = new Client();
+                    client.IsLegalEntity = false;
+                    client.Phone = collection.Get("Phone");
+                    client.Address = livAddress;
+                    client.CurrentTariff = tariff;
+                    client.Station = station;
+                    client.PhysPerson = new PhysPerson();
+                    client.PhysPerson.CurrentAddress = regAddress;
+                    client.PhysPerson.FirstName = collection.Get("FirstName");
+                    client.PhysPerson.Surname = collection.Get("Surname");
+                    client.PhysPerson.Patronimyc = collection.Get("Patronimyc");
+                    client.PhysPerson.PassportNumber = collection.Get("PassportNumber");
+                    client.PhysPerson.SerialNumber = int.Parse(collection.Get("SerialNumber"));
+                    client.PhysPerson.DateOfIssue = DateTime.Parse(collection.Get("DateOfIssue"));
+                    client.PhysPerson.PlaceOfIssue = collection.Get("PlaceOfIssue");
+                    ITransaction tr = session.BeginTransaction();
+                    session.Save(client);
+                    tr.Commit();
+                }
                 return RedirectToAction("Index");
             }
             catch

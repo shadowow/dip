@@ -17,11 +17,9 @@ namespace diploma.Models.Core
         public virtual string PlaceOfIssue { get; set; }
         public virtual DateTime DateOfIssue { get; set; }
         public virtual Address CurrentAddress { get; set; }
-
-        public virtual ISet<Client> Clients { get; set; }
         public PhysPerson()
         {
-            Clients = new HashSet<Client>();
+           // Client = new Client();
         }
     }
 }
@@ -38,6 +36,5 @@ public class PhysPersonMap : ClassMap<diploma.Models.Core.PhysPerson>
         Map(x => x.PlaceOfIssue);
         Map(x => x.DateOfIssue);
         References(x => x.CurrentAddress).Cascade.All();
-        HasMany(x => x.Clients).Inverse();
     }
 }

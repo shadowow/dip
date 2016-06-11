@@ -1,0 +1,124 @@
+﻿@model diploma.Models.Core.Client
+
+@{
+    ViewBag.Title = "Добавления абонента физ. лица";
+}
+
+<h2>Добавления абонента</h2>
+
+
+@using (Html.BeginForm("Create", "PhysPerson", FormMethod.Post)) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Абонент</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <label class="control-label col-md-2">Телефон</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">АТС</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Stations")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Адрес</label>
+            <div class="col-md-10">
+                @Html.DropDownList("LivingAddresses", ViewBag.LivingAddresses as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Тариф</label>
+            <div class="col-md-10">
+                @Html.DropDownList("Tariffs", ViewBag.Tariffs as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Фамилия</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhysPerson.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhysPerson.Surname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Имя</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhysPerson.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhysPerson.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Отчество</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhysPerson.Patronimyc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhysPerson.Patronimyc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Серия паспорта</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhysPerson.SerialNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhysPerson.SerialNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Номер паспорта</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhysPerson.PassportNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhysPerson.PassportNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Место выдачи паспорта</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhysPerson.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhysPerson.PlaceOfIssue, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Дата выдачи паспорта</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PhysPerson.DateOfIssue, new { htmlAttributes = new { @type="date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PhysPerson.DateOfIssue, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Адрес регистрации</label>
+            <div class="col-md-10">
+                @Html.DropDownList("RegistrationAddresses", ViewBag.RegistrationAddresses as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Добавить" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("К списку физических лиц", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

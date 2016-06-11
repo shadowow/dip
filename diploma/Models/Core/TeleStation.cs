@@ -17,8 +17,14 @@ namespace diploma.Models.Core
         {
             Clients = new HashSet<Client>();
         }
+
+        public override string ToString()
+        {
+            return ID + ";  Адрес: " + Address.ToString();
+        }
     }
 }
+
 public class TeleStationMap : ClassMap<diploma.Models.Core.TeleStation>
 {
     public TeleStationMap()

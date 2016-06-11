@@ -22,9 +22,7 @@ public class NHibernateHelper
                         .Username("postgres")
                         .Password("qwerty"))
                         .Raw("hbm2ddl.keywords", "none"))
-                        .Mappings(x => x.FluentMappings.AddFromAssemblyOf<AddressMap>()
-                        .Add<CallMap>()
-                        .Add<TariffMap>())
+                        .Mappings(x => x.FluentMappings.AddFromAssemblyOf<AddressMap>())
                         .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))
                         .BuildSessionFactory();
         return sessionFactory.OpenSession();

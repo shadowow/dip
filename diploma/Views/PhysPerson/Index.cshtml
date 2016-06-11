@@ -7,10 +7,22 @@
 <h2>Абоненты - Физ. лица</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить нового абонента", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            Телефон
+        </th>
+        <th>
+            АТС
+        </th>
+        <th>
+            Тариф
+        </th>
+        <th>
+            Адрес
+        </th>
         <th>
             Фамилия
         </th>
@@ -23,20 +35,26 @@
         <th>
             Номер паспорта
         </th>
-        <th>
-            Серия паспорта
-        </th>
-        <th>
-            Место выдачи паспорта
-        </th>
-        <th>
-            Дата выдачи паспорта
-        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            Номер @Html.DisplayFor(modelItem => item.Station.ID)<br />
+            Адрес @Html.DisplayFor(modelItem => item.Station.Address.District) р-н, @Html.DisplayFor(modelItem => item.Station.Address.Street), 
+            @Html.DisplayFor(modelItem => item.Station.Address.Building)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentTariff.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.District) р-н, @Html.DisplayFor(modelItem => item.Address.Street),
+            @Html.DisplayFor(modelItem => item.Address.Building)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.PhysPerson.Surname)
         </td>
@@ -47,21 +65,12 @@
             @Html.DisplayFor(modelItem => item.PhysPerson.Patronimyc)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PhysPerson.PassportNumber)
+           @Html.DisplayFor(modelItem => item.PhysPerson.SerialNumber)  @Html.DisplayFor(modelItem => item.PhysPerson.PassportNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PhysPerson.SerialNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhysPerson.PlaceOfIssue)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhysPerson.DateOfIssue)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Подробности", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
