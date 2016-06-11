@@ -289,6 +289,9 @@
     <Content Include="Views\Address\Delete.cshtml" />
     <Content Include="Views\TeleStation\Index.cshtml" />
     <Content Include="Views\TeleStation\Create.cshtml" />
+    <Content Include="Views\TeleStation\Details.cshtml" />
+    <Content Include="Views\TeleStation\Edit.cshtml" />
+    <Content Include="Views\TeleStation\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

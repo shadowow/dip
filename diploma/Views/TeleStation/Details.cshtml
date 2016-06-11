@@ -1,0 +1,37 @@
+﻿@model diploma.Models.Core.TeleStation
+
+@{
+    ViewBag.Title = "АТС - Подробная информация";
+}
+
+<h2>Подробная информация</h2>
+
+<div>
+    <h4>АТС</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Номер
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            Адрес
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.PostOffice),
+            @Html.DisplayFor(model => model.Address.District)
+            р-н,
+            @Html.DisplayFor(model => model.Address.Street),
+            @Html.DisplayFor(model => model.Address.Building),
+            @Html.DisplayFor(model => model.Address.Extra)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("К списку АТС", "Index")
+</p>

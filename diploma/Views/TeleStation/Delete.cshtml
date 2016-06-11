@@ -1,0 +1,43 @@
+﻿@model diploma.Models.Core.TeleStation
+
+@{
+    ViewBag.Title = "Удаление АТС";
+}
+
+<h2>Удаление АТС</h2>
+
+<h3>Вы уверены, что хотите удалить эту АТС?</h3>
+<div>
+    <h4>АТС</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Номер
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ID)
+        </dd>
+        <dt>
+            Адрес
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.PostOffice),
+            @Html.DisplayFor(model => model.Address.District)
+            р-н,
+            @Html.DisplayFor(model => model.Address.Street),
+            @Html.DisplayFor(model => model.Address.Building),
+            @Html.DisplayFor(model => model.Address.Extra)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("К списку АТС", "Index")
+        </div>
+    }
+</div>

@@ -24,7 +24,11 @@ namespace diploma.Controllers
         // GET: TeleStation/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var t = session.Get<TeleStation>(id);
+                return View(t);
+            }
         }
 
         // GET: TeleStation/Create
@@ -72,7 +76,26 @@ namespace diploma.Controllers
         // GET: TeleStation/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var addresses = session.QueryOver<Address>().List();
+                var m = session.Get<TeleStation>(id);
+                List<SelectListItem> items = new List<SelectListItem>();
+                foreach (Address a in addresses)
+                {
+                    if (a.ID == m.Address.ID)
+                    {
+                        items.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString(), Selected = true });
+                    }
+                    else
+                    {
+                        items.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString(), Selected = false });
+                    }
+                }
+
+                ViewBag.Addresses = items;
+                return View(m);
+            }
         }
 
         // POST: TeleStation/Edit/5
@@ -82,6 +105,16 @@ namespace diploma.Controllers
             try
             {
                 // TODO: Add update logic here
+                using (ISession session = NHibernateHelper.OpenSession())
+                {
+                    Address address = session.Get<Address>(int.Parse(collection.Get("Addresses")));
+                    TeleStation teleStation = new TeleStation();
+                    teleStation.ID = id;
+                    teleStation.Address = address;
+                    ITransaction tr = session.BeginTransaction();
+                    session.Update(teleStation);
+                    tr.Commit();
+                }
 
                 return RedirectToAction("Index");
             }
@@ -94,7 +127,11 @@ namespace diploma.Controllers
         // GET: TeleStation/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var t = session.Get<TeleStation>(id);
+                return View(t);
+            }
         }
 
         // POST: TeleStation/Delete/5
@@ -104,6 +141,14 @@ namespace diploma.Controllers
             try
             {
                 // TODO: Add delete logic here
+                using (ISession session = NHibernateHelper.OpenSession())
+                {
+                    TeleStation ts = new TeleStation();
+                    ts.ID = id;
+                    ITransaction tr = session.BeginTransaction();
+                    session.Delete(ts);
+                    tr.Commit();
+                }
 
                 return RedirectToAction("Index");
             }
