@@ -196,9 +196,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DistrictController.cs" />
+    <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TariffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,17 +211,11 @@
     <Compile Include="Models\Core\Call.cs" />
     <Compile Include="Models\Core\Client.cs" />
     <Compile Include="Models\Core\Debt.cs" />
-    <Compile Include="Models\Core\District.cs" />
     <Compile Include="Models\Core\FinishedTariff.cs" />
-    <Compile Include="Models\Core\Passport.cs" />
-    <Compile Include="Models\Core\PaymentMethod.cs" />
     <Compile Include="Models\Core\Person.cs" />
     <Compile Include="Models\Core\PhysPerson.cs" />
-    <Compile Include="Models\Core\PostOffice.cs" />
-    <Compile Include="Models\Core\Street.cs" />
     <Compile Include="Models\Core\Tariff.cs" />
     <Compile Include="Models\Core\TeleStation.cs" />
-    <Compile Include="Models\Core\USRLE.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NHibernate\NHibernateHelper.cs" />
@@ -284,6 +279,8 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Districts.cshtml" />
+    <Content Include="Views\Tariff\Index.cshtml" />
+    <Content Include="Views\Bill\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -15,48 +15,43 @@ namespace diploma.Models.Core
         public virtual Tariff CurrentTariff { get; set; }
         public virtual Address Address { get; set; }
         public virtual bool IsLegalEntity { get; set; }
+        public virtual PhysPerson PhysPerson { get; set; }
+        public virtual Person LegalEntity { get; set; }
 
         public virtual ISet<Debt> Debts { get; set; }
         public virtual ISet<FinishedTariff> TariffsStory { get; set; }
         public virtual ISet<Call> CallsStory { get; set; }
+        public virtual ISet<Bill> Bills { get; set; }
 
-        private User user = null;
-        public virtual User User
-        {
-            get { return user; }
-            set { user = value; }
-        }
-
-        private Bill bill = null;
-        public virtual Bill Bill
-        {
-            get { return bill; }
-            set { bill = value; }
-        }
+     
+       
 
         public Client()
         {
             Debts = new HashSet<Debt>();
             TariffsStory = new HashSet<FinishedTariff>();
             CallsStory = new HashSet<Call>();
+            Bills = new HashSet<Bill>();
         }
     }
 }
 
- public class ClientMap : ClassMap<diploma.Models.Core.Client>
+public class ClientMap : ClassMap<diploma.Models.Core.Client>
+{
+    public ClientMap()
     {
-        public ClientMap()
-        {
-            Id(x => x.ID).GeneratedBy.Increment(); ;
-            Map(x => x.Phone);
-            Map(x => x.IsLegalEntity);
-            References(x => x.Address).Cascade.All();
-            References(x => x.Station).Cascade.All();
-            References(x => x.CurrentTariff).Cascade.All();
+        Id(x => x.ID).GeneratedBy.Increment();
+        Map(x => x.Phone);
+        Map(x => x.IsLegalEntity);
+        References(x => x.Address).Cascade.All();
+        References(x => x.Station).Cascade.All();
+        References(x => x.CurrentTariff).Cascade.All();
+        References(x => x.PhysPerson).Cascade.All();
+        References(x => x.LegalEntity).Cascade.All();
 
-            HasOne(x => x.User);
-            HasMany(x => x.Debts).Inverse();
-            HasMany(x => x.TariffsStory).Inverse();
-            HasMany(x => x.CallsStory).Inverse();
-        }
+        HasMany(x => x.Bills).Inverse();
+        HasMany(x => x.Debts).Inverse();
+        HasMany(x => x.TariffsStory).Inverse();
+        HasMany(x => x.CallsStory).Inverse();
     }
+}

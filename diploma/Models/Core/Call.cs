@@ -17,14 +17,14 @@ namespace diploma.Models.Core
     }
 
 }
-    public class CallMap : ClassMap<diploma.Models.Core.Call>
+public class CallMap : ClassMap<diploma.Models.Core.Call>
+{
+    public CallMap()
     {
-        public CallMap()
-        {
-            Id(x => x.ID).GeneratedBy.Increment(); ;
-            References(x => x.Client).Cascade.All();
-            Map(x => x.Begin);
-            Map(x => x.End);
-            Map(x => x.TalkedWith);
-        }
+        Id(x => x.ID).GeneratedBy.Increment();
+        References(x => x.Client).Cascade.All();
+        Map(x => x.Begin);
+        Map(x => x.End);
+        Map(x => x.TalkedWith);
     }
+}

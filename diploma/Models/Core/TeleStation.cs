@@ -19,13 +19,13 @@ namespace diploma.Models.Core
         }
     }
 }
-    public class TeleStationMap : ClassMap<diploma.Models.Core.TeleStation>
+public class TeleStationMap : ClassMap<diploma.Models.Core.TeleStation>
+{
+    public TeleStationMap()
     {
-        public TeleStationMap()
-        {
-            Id(x => x.ID).GeneratedBy.Increment(); ;
-            References(x => x.Address).Cascade.All();
+        Id(x => x.ID).GeneratedBy.Increment();
+        References(x => x.Address).Cascade.All();
 
-            HasMany(x => x.Clients);
-        }
+        HasMany(x => x.Clients).Inverse();
     }
+}

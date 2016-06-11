@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using diploma.Models;
+using diploma.Models.Core;
 using NHibernate;
 
 namespace diploma.Controllers
 {
-    public class DistrictController : Controller
+    public class BillController : Controller
     {
-        // GET: District
+        // GET: Bill
         public ActionResult Index()
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var district = session.QueryOver<Models.Core.District>().List();
-                return View(district);
+                var t = session.QueryOver<Bill>().List();
+                return View(t);
             }
         }
     }

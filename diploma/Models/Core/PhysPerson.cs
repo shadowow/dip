@@ -12,20 +12,28 @@ namespace diploma.Models.Core
         public virtual string Surname { get; set; }
         public virtual string FirstName { get; set; }
         public virtual string LastName { get; set; }
-        public virtual Passport Passport { get; set; }
-        public virtual Client Client { get; set; }
+        public virtual string PlaceOfIssue { get; set; }
+        public virtual DateTime DateOfIssue { get; set; }
+        public virtual Address CurrentAddress { get; set; }
 
-    }
-}
-    public class PhysPersonMap : ClassMap<diploma.Models.Core.PhysPerson>
-    {
-        public PhysPersonMap()
+        public virtual ISet<Client> Clients { get; set; }
+        public PhysPerson()
         {
-            Id(x => x.ID).GeneratedBy.Increment();
-            References(x => x.Client).Cascade.All();
-            Map(x => x.Surname);
-            Map(x => x.FirstName);
-            Map(x => x.LastName);
-            HasOne(x => x.Passport).Cascade.All().Constrained();
+            Clients = new HashSet<Client>();
         }
     }
+}
+public class PhysPersonMap : ClassMap<diploma.Models.Core.PhysPerson>
+{
+    public PhysPersonMap()
+    {
+        Id(x => x.ID).GeneratedBy.Increment();
+        Map(x => x.Surname);
+        Map(x => x.FirstName);
+        Map(x => x.LastName);
+        Map(x => x.PlaceOfIssue);
+        Map(x => x.DateOfIssue);
+        References(x => x.CurrentAddress).Cascade.All();
+        HasMany(x => x.Clients).Inverse();
+    }
+}

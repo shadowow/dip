@@ -15,14 +15,14 @@ namespace diploma.Models.Core
         public virtual DateTime End { get; set; }
     }
 }
-    public class FinishedTariffMap : ClassMap<diploma.Models.Core.FinishedTariff>
+public class FinishedTariffMap : ClassMap<diploma.Models.Core.FinishedTariff>
+{
+    public FinishedTariffMap()
     {
-        public FinishedTariffMap()
-        {
-            Id(x => x.ID).GeneratedBy.Increment(); ;
-            References(x => x.Client).Cascade.All();
-            References(x => x.Tariff).Cascade.All();
-            Map(x => x.Begin);
-            Map(x => x.End);
-        }
+        Id(x => x.ID).GeneratedBy.Increment(); 
+        References(x => x.Client).Cascade.All();
+        References(x => x.Tariff).Cascade.All();
+        Map(x => x.Begin);
+        Map(x => x.End);
     }
+}

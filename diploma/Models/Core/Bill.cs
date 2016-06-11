@@ -18,7 +18,7 @@ public class BillMap : ClassMap<diploma.Models.Core.Bill>
 {
     public BillMap()
     {
-        Id(x => x.Number);
+        Id(x => x.Number).GeneratedBy.Increment();
         References(x => x.Client).Cascade.All();
         Map(x => x.Date);
     }

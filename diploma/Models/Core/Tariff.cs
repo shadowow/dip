@@ -9,9 +9,10 @@ namespace diploma.Models.Core
     public class Tariff
     {
         public virtual int ID { get; set; }
-        public virtual string Names { get; set; }
+        public virtual string Name { get; set; }
         public virtual string Description { get; set; }
-        public virtual int Discount { get; set; }
+        public virtual double Amount { get; set; }
+        public virtual int Period { get; set; } // в днях
 
         public virtual ISet<FinishedTariff> FinishedTariffs { get; set; }
 
@@ -21,15 +22,16 @@ namespace diploma.Models.Core
         }
     }
 }
-    public class TariffMap : ClassMap<diploma.Models.Core.Tariff>
+public class TariffMap : ClassMap<diploma.Models.Core.Tariff>
+{
+    public TariffMap()
     {
-        public TariffMap()
-        {
-            Id(x => x.ID).GeneratedBy.Increment(); ;
-            Map(x => x.Names);
-            Map(x => x.Description);
-            Map(x => x.Discount);
+        Id(x => x.ID).GeneratedBy.Increment(); ;
+        Map(x => x.Name);
+        Map(x => x.Description);
+        Map(x => x.Amount);
+        Map(x => x.Period);
             
-            HasMany(x => x.FinishedTariffs).Inverse();
-        }
+        HasMany(x => x.FinishedTariffs).Inverse();
     }
+}

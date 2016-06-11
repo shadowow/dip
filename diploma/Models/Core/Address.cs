@@ -9,38 +9,41 @@ namespace diploma.Models.Core
     public class Address
     {
         public virtual int ID { get; set; }
-        public virtual PostOffice PostOffice { get; set; }
-        public virtual District District { get; set; }
-        public virtual Street Street { get; set; }
+        public virtual string PostOffice { get; set; }
+        public virtual string District { get; set; }
+        public virtual string Street { get; set; }
         public virtual string Building { get; set; }
         public virtual string Extra { get; set; }
 
-        public virtual ISet<Passport> Passports { get; set; }
+        public virtual ISet<PhysPerson> PhysPersons { get; set; }
         public virtual ISet<Person> Persons { get; set; }
         public virtual ISet<Client> Clients { get; set; }
+        public virtual ISet<TeleStation> Stations { get; set; }
 
         public Address()
         {
-            Passports = new HashSet<Passport>();
+            PhysPersons = new HashSet<PhysPerson>();
             Persons = new HashSet<Person>();
             Clients = new HashSet<Client>();
+            Stations = new HashSet<TeleStation>();
         }
     }
 
 }
-    public class AddressMap : ClassMap<diploma.Models.Core.Address>
+public class AddressMap : ClassMap<diploma.Models.Core.Address>
+{
+    public AddressMap()
     {
-        public AddressMap()
-        {
-            Id(x => x.ID).GeneratedBy.Increment(); ;
-            References(x => x.PostOffice).Cascade.All();
-            References(x => x.District).Cascade.All();
-            References(x => x.Street).Cascade.All();
-            Map(x => x.Building);
-            Map(x => x.Extra);
+        Id(x => x.ID).GeneratedBy.Increment();
+        Map(x => x.PostOffice);
+        Map(x => x.District);
+        Map(x => x.Street);
+        Map(x => x.Building);
+        Map(x => x.Extra);
 
-            HasMany(x => x.Passports).Inverse();
-            HasMany(x => x.Persons).Inverse();
-            HasMany(x => x.Clients).Inverse();
-        }
+        HasMany(x => x.PhysPersons).Inverse();
+        HasMany(x => x.Persons).Inverse();
+        HasMany(x => x.Clients).Inverse();
+        HasMany(x => x.Stations).Inverse();
     }
+}

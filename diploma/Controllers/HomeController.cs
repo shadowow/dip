@@ -18,8 +18,8 @@ namespace diploma.Controllers
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var districts = session.QueryOver<District>().List();
-                return View(districts);
+                var t = session.QueryOver<Tariff>().List();
+                return View(t);
             }
         }
 
@@ -41,7 +41,7 @@ namespace diploma.Controllers
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var districts = session.QueryOver<District>().List();
+                var districts = session.QueryOver<Tariff>().List();
                 return View(districts);
             }
         }

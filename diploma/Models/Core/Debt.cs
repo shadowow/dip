@@ -21,14 +21,14 @@ namespace diploma.Models.Core
     }
 }
 
-    public class Debtmap : ClassMap<diploma.Models.Core.Debt>
+public class Debtmap : ClassMap<diploma.Models.Core.Debt>
+{
+    public Debtmap()
     {
-        public Debtmap()
-        {
-            Id(x => x.ID).GeneratedBy.Increment(); ;
-            References(x => x.Client).Cascade.All();
-            Map(x => x.Amount);
+        Id(x => x.ID).GeneratedBy.Increment(); 
+        References(x => x.Client).Cascade.All();
+        Map(x => x.Amount);
             
-            HasMany(x => x.PaymentsStory).Inverse();
-        }
+        HasMany(x => x.PaymentsStory).Inverse();
     }
+}
