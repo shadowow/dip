@@ -24,7 +24,7 @@ public class TeleStationMap : ClassMap<diploma.Models.Core.TeleStation>
     public TeleStationMap()
     {
         Id(x => x.ID).GeneratedBy.Increment();
-        References(x => x.Address).Cascade.All();
+        References(x => x.Address).Cascade.All().LazyLoad(Laziness.False);
 
         HasMany(x => x.Clients).Inverse();
     }

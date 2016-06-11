@@ -13,14 +13,15 @@ namespace diploma.Controllers
     
     public class HomeController : Controller
     {
-        
         public ActionResult Index()
         {
-            using (ISession session = NHibernateHelper.OpenSession())
-            {
-                var t = session.QueryOver<Tariff>().List();
-                return View(t);
-            }
+
+            /* using (ISession session = NHibernateHelper.OpenSession())
+             {
+                 var t = session.QueryOver<Tariff>().List();
+                 return View(t);
+             } */
+            return View();
         }
 
         public ActionResult About()

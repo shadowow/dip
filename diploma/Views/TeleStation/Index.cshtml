@@ -1,0 +1,44 @@
+﻿@model IEnumerable<diploma.Models.Core.TeleStation>
+
+@{
+    ViewBag.Title = "АТС";
+}
+
+<h2>АТС</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Номер
+        </th>
+        <th>
+            Адрес
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.PostOffice), 
+            @Html.DisplayFor(modelItem => item.Address.District)
+             р-н, 
+            @Html.DisplayFor(modelItem => item.Address.Street), 
+            @Html.DisplayFor(modelItem => item.Address.Building), 
+            @Html.DisplayFor(modelItem => item.Address.Extra)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
