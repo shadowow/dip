@@ -1,0 +1,69 @@
+﻿@model IEnumerable<diploma.Models.Core.Client>
+
+@{
+    ViewBag.Title = "Абоненты - Физ. лица";
+}
+
+<h2>Абоненты - Физ. лица</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Фамилия
+        </th>
+        <th>
+            Имя
+        </th>
+        <th>
+            Отчество
+        </th>
+        <th>
+            Номер паспорта
+        </th>
+        <th>
+            Серия паспорта
+        </th>
+        <th>
+            Место выдачи паспорта
+        </th>
+        <th>
+            Дата выдачи паспорта
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhysPerson.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhysPerson.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhysPerson.Patronimyc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhysPerson.PassportNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhysPerson.SerialNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhysPerson.PlaceOfIssue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhysPerson.DateOfIssue)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

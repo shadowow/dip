@@ -44,8 +44,8 @@ public class ClientMap : ClassMap<diploma.Models.Core.Client>
         References(x => x.Address).Cascade.All();
         References(x => x.Station).Cascade.All();
         References(x => x.CurrentTariff).Cascade.All();
-        References(x => x.PhysPerson).Cascade.All();
-        References(x => x.LegalEntity).Cascade.All();
+        References(x => x.PhysPerson).Cascade.All().LazyLoad(Laziness.False);
+        References(x => x.LegalEntity).Cascade.All().LazyLoad(Laziness.False);
 
         HasMany(x => x.Bills).Inverse();
         HasMany(x => x.Debts).Inverse();

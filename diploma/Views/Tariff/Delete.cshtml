@@ -1,0 +1,64 @@
+﻿@model diploma.Models.Core.Tariff
+
+@{
+    ViewBag.Title = "Удаление тарифа";
+}
+
+<h2>Удаление тарифа</h2>
+
+<h3>Вы уверены, что хотите удалить этот тариф?</h3>
+<div>
+    <h4>Тариф</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Название
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Описание
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Порог
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Limitation)
+        </dd>
+
+        <dt>
+            Плата за порог
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LimitPrice)
+        </dd>
+
+        <dt>
+            Плата за минуту
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OverPrice)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("К списку тарифов", "Index")
+        </div>
+    }
+</div>

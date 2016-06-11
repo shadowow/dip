@@ -11,9 +11,16 @@ namespace diploma.Models.Core
         public virtual int ID { get; set; }
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }
-        public virtual int Limit { get; set; }
+        public virtual int Limitation { get; set; }
         public virtual int LimitPrice { get; set; }
         public virtual double OverPrice { get; set; }
+
+        public virtual ISet<Client> Clients { get; set; }
+
+        public Tariff()
+        {
+            Clients = new HashSet<Client>();
+        }
     }
 }
 public class TariffMap : ClassMap<diploma.Models.Core.Tariff>
@@ -23,8 +30,10 @@ public class TariffMap : ClassMap<diploma.Models.Core.Tariff>
         Id(x => x.ID).GeneratedBy.Increment(); ;
         Map(x => x.Name);
         Map(x => x.Description);
-        Map(x => x.Limit);
+        Map(x => x.Limitation);
         Map(x => x.LimitPrice);
         Map(x => x.OverPrice);
+
+        HasMany(x => x.Clients).Inverse();
     }
 }

@@ -11,8 +11,8 @@ namespace diploma.Models.Core
     {
         public virtual int ID { get; set; }
         public virtual Client Client { get; set; }
-        public virtual DateTime Begin { get; set; }
-        public virtual DateTime End { get; set; }
+        public virtual DateTime StartDate { get; set; }
+        public virtual DateTime EndDate { get; set; }
         public virtual string TalkedWith { get; set; }
     }
 
@@ -23,8 +23,8 @@ public class CallMap : ClassMap<diploma.Models.Core.Call>
     {
         Id(x => x.ID).GeneratedBy.Increment();
         References(x => x.Client).Cascade.All();
-        Map(x => x.Begin);
-        Map(x => x.End);
+        Map(x => x.StartDate);
+        Map(x => x.EndDate);
         Map(x => x.TalkedWith);
     }
 }

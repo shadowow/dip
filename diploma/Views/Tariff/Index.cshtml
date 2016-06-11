@@ -1,21 +1,30 @@
 ﻿@model IEnumerable<diploma.Models.Core.Tariff>
 
+@{
+    ViewBag.Title = "Тарифы";
+}
+
+<h2>Тарифы</h2>
+
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить новый тариф", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Название
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Описание
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            Порог
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Period)
+            Плата за порог
+        </th>
+        <th>
+            Плата в минуту
         </th>
         <th></th>
     </tr>
@@ -29,15 +38,18 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Amount)
+            @Html.DisplayFor(modelItem => item.Limitation)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Period)
+            @Html.DisplayFor(modelItem => item.LimitPrice)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.DisplayFor(modelItem => item.OverPrice)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Подробности", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID })
         </td>
     </tr>
 }

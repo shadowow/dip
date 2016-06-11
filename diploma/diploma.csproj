@@ -200,6 +200,7 @@
     <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhysPersonController.cs" />
     <Compile Include="Controllers\TariffController.cs" />
     <Compile Include="Controllers\TeleStationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -280,7 +281,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Districts.cshtml" />
-    <Content Include="Views\Tariff\Index.cshtml" />
     <Content Include="Views\Bill\Index.cshtml" />
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Address\Details.cshtml" />
@@ -292,6 +292,12 @@
     <Content Include="Views\TeleStation\Details.cshtml" />
     <Content Include="Views\TeleStation\Edit.cshtml" />
     <Content Include="Views\TeleStation\Delete.cshtml" />
+    <Content Include="Views\PhysPerson\Index.cshtml" />
+    <Content Include="Views\Tariff\Index.cshtml" />
+    <Content Include="Views\Tariff\Details.cshtml" />
+    <Content Include="Views\Tariff\Create.cshtml" />
+    <Content Include="Views\Tariff\Edit.cshtml" />
+    <Content Include="Views\Tariff\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
