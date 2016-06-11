@@ -1,17 +1,17 @@
 ﻿@model diploma.Models.Core.Address
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Адрес";
 }
 
-<h2>Details</h2>
+<h2>Подробная информация</h2>
 
 <div>
-    <h4>Address</h4>
+    <h4>Адрес</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.PostOffice)
+            Индекс
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.District)
+            Район
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Street)
+            Улица
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Building)
+            Дом
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Extra)
+            Доп. информация
         </dt>
 
         <dd>
@@ -53,6 +53,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("К списку адресов", "Index")
 </p>
