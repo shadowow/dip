@@ -1,0 +1,58 @@
+﻿@model diploma.Models.Core.Address
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Address</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PostOffice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostOffice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.District)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.District)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Building)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Building)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Extra)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Extra)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

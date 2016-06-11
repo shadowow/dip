@@ -1,0 +1,73 @@
+﻿@model IEnumerable<diploma.Models.Core.Address>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Адреса</h2>
+
+<p>
+    @Html.ActionLink("Добавить новый", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Почтовый индекс
+        </th>
+        <th>
+            Район
+        </th>
+        <th>
+            Улица
+        </th>
+        <th>
+            Дом
+        </th>
+        <th>
+            Дополнительная информация
+        </th>
+        <th> </th>
+        <!--th>
+            @Html.DisplayNameFor(model => model.PostOffice)
+        <th>
+        <th>
+            @Html.DisplayNameFor(model => model.District)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Building)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Extra)
+        </th>
+        <th></th-->
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostOffice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.District)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Building)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Extra)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Подробно", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
