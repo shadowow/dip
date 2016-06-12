@@ -29,7 +29,10 @@
             Возможность редактирования справочников
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.CanEditReference)
+                    @if (Model.CanEditReference)
+                    { <input id="CanEditReference" name="CanEditReference" value="true" type="checkbox" checked/> }
+                    else
+                    { <input id="CanEditReference" name="CanEditReference" value="true" type="checkbox" /> }
                     @Html.ValidationMessageFor(model => model.CanEditReference, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -39,7 +42,10 @@
             Возможность редактировать абонентов
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.CanEditPersonal)
+                    @if (Model.CanEditPersonal)
+                    { <input id="CanEditPersonal" name="CanEditPersonal" value="true" type="checkbox" checked /> }
+                    else
+                    { <input id="CanEditPersonal" name="CanEditPersonal" value="true" type="checkbox" /> }
                     @Html.ValidationMessageFor(model => model.CanEditPersonal, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -49,7 +55,10 @@
             Возможность редактировать пользователей
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.CanEditUsers)
+                    @if (Model.CanEditUsers)
+                    { <input id="CanEditUsers" name="CanEditUsers" value="true" type="checkbox" checked /> }
+                    else
+                    { <input id="CanEditUsers" name="CanEditUsers" value="true" type="checkbox" /> }
                     @Html.ValidationMessageFor(model => model.CanEditUsers, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -57,7 +66,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Сохранить" class="btn btn-default" />
             </div>
         </div>
     </div>

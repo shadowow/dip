@@ -83,13 +83,13 @@ namespace diploma.Controllers
                 UserRole role = new UserRole();
                 role.ID = id;
                 role.Name = collection.Get("Name");
-                role.CanEditPersonal = Boolean.Parse(collection.Get("CanEditPersonal"));
-                role.CanEditReference = Boolean.Parse(collection.Get("CanEditReference"));
-                role.CanEditUsers = Boolean.Parse(collection.Get("CanEditUsers"));
+                role.CanEditPersonal = Convert.ToBoolean(collection["CanEditPersonal"]); 
+                role.CanEditReference = Convert.ToBoolean(collection["CanEditReference"]); 
+                role.CanEditUsers = Convert.ToBoolean(collection["CanEditUsers"]); 
                 using (ISession session = NHibernateHelper.OpenSession())
                 {
                     ITransaction tr = session.BeginTransaction();
-                    session.Save(role);
+                    session.Update(role);
                     tr.Commit();
                 }
                 return RedirectToAction("Index");
