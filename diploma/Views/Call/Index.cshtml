@@ -1,0 +1,36 @@
+﻿@model IEnumerable<diploma.Models.Core.Call>
+
+@{
+    ViewBag.Title = "История разговоров";
+}
+
+<h2>История разговоров абонента @Html.DisplayNameFor(model => model.Client.Phone)</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Начало разговора
+        </th>
+        <th>
+            Окончание разговора
+        </th>
+        <th>
+            Номер ответчика
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TalkedWith)
+        </td>
+    </tr>
+}
+
+</table>

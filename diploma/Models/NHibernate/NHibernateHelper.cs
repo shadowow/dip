@@ -17,10 +17,10 @@ public class NHibernateHelper
                         .Database(PostgreSQLConfiguration.Standard
                         .ConnectionString(c => c
                         .Host("localhost")
-                        .Port(5454)
+                        .Port(5432)
                         .Database("tele")
                         .Username("postgres")
-                        .Password("qwerty"))
+                        .Password("me123"))
                         .Raw("hbm2ddl.keywords", "none"))
                         .Mappings(x => x.FluentMappings.AddFromAssemblyOf<AddressMap>())
                         .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, true))

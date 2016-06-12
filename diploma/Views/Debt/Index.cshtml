@@ -1,0 +1,45 @@
+﻿@model IEnumerable<diploma.Models.Core.Debt>
+
+@{
+    ViewBag.Title = "Задолженности";
+}
+
+<h2>Задолженности абонента @Html.DisplayNameFor(model => model.Client.Phone)</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Задолженность
+        </th>
+
+        <th>
+            Сумма
+        </th>
+
+        <th>
+            Дата начисления
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @if (item.PaymentsStory.Count != 0)
+            {
+                @Html.ActionLink("Оплачена","Index","Payment", new { id = item.Client.ID })
+            }
+        </td>
+    </tr>
+}
+
+</table>

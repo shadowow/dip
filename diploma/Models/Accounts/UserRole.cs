@@ -10,9 +10,9 @@ namespace diploma.Models.Accounts
     {
         public virtual int ID { get; set; }
         public virtual string Name { get; set; }
-        //public virtual bool IsClient { get; set; }
         public virtual bool CanEditReference { get; set; }
         public virtual bool CanEditPersonal { get; set; }
+        public virtual bool CanEditUsers { get; set; }
 
         public virtual ISet<User> Users { get; set; }
 
@@ -28,10 +28,9 @@ public class UserRoleMap : ClassMap<diploma.Models.Accounts.UserRole>
     {
         Id(x => x.ID);
         Map(x => x.Name);
-       // Map(x => x.IsClient);
         Map(x => x.CanEditPersonal);
         Map(x => x.CanEditReference);
-
+        Map(x => x.CanEditUsers);
         HasMany(x => x.Users).Inverse();
     }
 }

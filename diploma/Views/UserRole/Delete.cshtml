@@ -1,0 +1,56 @@
+﻿@model diploma.Models.Accounts.UserRole
+
+@{
+    ViewBag.Title = "Удаление роли";
+}
+
+<h2>Удаление роли</h2>
+
+<h3>Вы уверены, что хотите удалить эту роль?</h3>
+<div>
+    <h4>Роль пользователя</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Имя роли
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Возможность редактирования справочников
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanEditReference)
+        </dd>
+
+        <dt>
+            Возможность редактировать абонентов
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanEditPersonal)
+        </dd>
+
+        <dt>
+            Возможность редактировать пользователей
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CanEditUsers)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("К списку ролей", "Index")
+        </div>
+    }
+</div>

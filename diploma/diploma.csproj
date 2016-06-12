@@ -198,11 +198,17 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\BillController.cs" />
+    <Compile Include="Controllers\CallController.cs" />
+    <Compile Include="Controllers\DebtController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\PhysPersonController.cs" />
     <Compile Include="Controllers\TariffController.cs" />
     <Compile Include="Controllers\TeleStationController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -280,7 +286,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Districts.cshtml" />
     <Content Include="Views\Bill\Index.cshtml" />
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Address\Details.cshtml" />
@@ -299,10 +304,26 @@
     <Content Include="Views\Tariff\Edit.cshtml" />
     <Content Include="Views\Tariff\Delete.cshtml" />
     <Content Include="Views\PhysPerson\Create.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\UserRole\Details.cshtml" />
+    <Content Include="Views\UserRole\Create.cshtml" />
+    <Content Include="Views\UserRole\Edit.cshtml" />
+    <Content Include="Views\UserRole\Delete.cshtml" />
+    <Content Include="Views\UserRole\Index.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\PhysPerson\Details.cshtml" />
+    <Content Include="Views\PhysPerson\Edit.cshtml" />
+    <Content Include="Views\PhysPerson\Delete.cshtml" />
+    <Content Include="Views\Call\Index.cshtml" />
+    <Content Include="Views\Debt\Index.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
+    <Content Include="Views\Person\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\District\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

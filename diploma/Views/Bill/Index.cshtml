@@ -1,18 +1,13 @@
 ﻿@model IEnumerable<diploma.Models.Core.Bill>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Client.Phone)
+            Абонент
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Number)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
+            Номер счёта
         </th>
         <th></th>
     </tr>
@@ -26,12 +21,8 @@
             @Html.DisplayFor(modelItem => item.Number)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Date)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Просмотр", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Удалить", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
     </tr>
 }

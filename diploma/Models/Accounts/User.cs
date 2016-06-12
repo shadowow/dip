@@ -13,7 +13,6 @@ namespace diploma.Models.Accounts
         public virtual string Login { get; set; }
         public virtual string Password { get; set; }
         public virtual UserRole Role { get; set; }
-       // public virtual Client Client { get; set; }
     }
 }
 
@@ -24,7 +23,6 @@ public class UserMap : ClassMap<diploma.Models.Accounts.User>
         Id(x => x.ID);
         Map(x => x.Login);
         Map(x => x.Password);
-        References(x => x.Role).Cascade.All();
-       // HasOne(x => x.Client).Cascade.All().Constrained();
+        References(x => x.Role).Cascade.All().LazyLoad(Laziness.False);
     }
 }

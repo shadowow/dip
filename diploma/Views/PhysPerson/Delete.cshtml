@@ -1,0 +1,112 @@
+﻿@model diploma.Models.Core.Client
+
+@{
+    ViewBag.Title = "Удаление физ. лица";
+}
+
+<h2>Удаление физ. лица</h2>
+
+<h3>Вы уверены, что хотите удалить этого абонента?</h3>
+<div>
+    <h4>Физ. лицо</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Телефон
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+
+        <dt>
+            АТС
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Station.ToString())
+        </dd>
+
+        <dt>
+            Текущий тариф
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrentTariff.Name)
+        </dd>
+
+        <dt>
+            Адрес
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address.ToString())
+        </dd>
+
+        <dt>
+            Фамилия
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhysPerson.Surname)
+        </dd>
+
+        <dt>
+            Имя
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhysPerson.FirstName)
+        </dd>
+
+        <dt>
+            Отчество
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhysPerson.Patronimyc)
+        </dd>
+
+        <dt>
+            Номер паспорта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhysPerson.SerialNumber + ' ' + model.PhysPerson.PassportNumber)
+        </dd>
+
+        <dt>
+            Место выдачи паспорта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhysPerson.PlaceOfIssue)
+        </dd>
+
+        <dt>
+            Дата выдачи паспорта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhysPerson.DateOfIssue)
+        </dd>
+
+        <dt>
+            Адрес прописки
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhysPerson.CurrentAddress)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("К списку физ. лиц", "Index")
+        </div>
+    }
+</div>

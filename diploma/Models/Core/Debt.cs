@@ -11,6 +11,7 @@ namespace diploma.Models.Core
         public virtual int ID { get; set; }
         public virtual Client Client { get; set; }
         public virtual float Amount { get; set; }
+        public virtual DateTime Date { get; set; }
 
         public virtual ISet<Payment> PaymentsStory { get; set; }
 
@@ -28,7 +29,7 @@ public class Debtmap : ClassMap<diploma.Models.Core.Debt>
         Id(x => x.ID).GeneratedBy.Increment(); 
         References(x => x.Client).Cascade.All();
         Map(x => x.Amount);
-            
+        Map(x => x.Date);
         HasMany(x => x.PaymentsStory).Inverse();
     }
 }

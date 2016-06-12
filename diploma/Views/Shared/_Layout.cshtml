@@ -30,8 +30,8 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Физические лица", "Index", "Address")</li>
-                            <li>@Html.ActionLink("Юридические лица", "Index", "Address")</li>
+                            <li>@Html.ActionLink("Физические лица", "Index", "PhysPerson")</li>
+                            <li>@Html.ActionLink("Юридические лица", "Index", "Person")</li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -43,6 +43,16 @@
                             <li>@Html.ActionLink("Тарифы", "Index", "Tariff")</li>
                             <li>@Html.ActionLink("АТС", "Index", "TeleStation")</li>
                             <li>@Html.ActionLink("Адреса", "Index", "Address")</li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                            Пользователи
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Пользователи системы", "Index", "User")</li>
+                            <li>@Html.ActionLink("Роли пользователей", "Index", "UserRole")</li>
                         </ul>
                     </li>
                 </ul>

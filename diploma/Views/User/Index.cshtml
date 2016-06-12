@@ -1,0 +1,45 @@
+﻿@model IEnumerable<diploma.Models.Accounts.User>
+
+@{
+    ViewBag.Title = "Пользователи";
+}
+
+<h2>Пользователи</h2>
+
+<p>
+    @Html.ActionLink("Добавить пользователя", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Логин
+        </th>
+        <th>
+            Пароль
+        </th>
+        <th>
+            Роль
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Подробности", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<diploma.Models.Core.Client>
+
+@{
+    ViewBag.Title = "Юр. лица";
+}
+
+<h2>Юр. лица</h2>
+
+<p>
+    @Html.ActionLink("Добавить юр. лицо", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Телефон
+        </th>
+        <th>
+            Адрес абонента
+        </th>
+        <th>
+            АТС
+        </th>
+        <th>
+            Тариф
+        </th>
+        <th>
+            ОГРН
+        </th>
+        <th>
+            Наименование
+        </th>
+        <th>
+            ИНН
+        </th>
+        <th>
+            КПП
+        </th>
+        <th>
+            Дата регистрации
+        </th>
+        <th>
+            Юр. адрес
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address.ToString())
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Station.ToString())
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentTariff.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LegalEntity.BIN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LegalEntity.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LegalEntity.PSRN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LegalEntity.CRR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LegalEntity.RegistrationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LegalEntity.LegalAddress.ToString())
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Подробности", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

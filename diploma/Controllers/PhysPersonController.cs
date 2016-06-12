@@ -15,7 +15,7 @@ namespace diploma.Controllers
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var t = session.QueryOver<Client>().List();
+                var t = session.QueryOver<Client>().Where(x => x.IsLegalEntity == false).List();
                 return View(t);
             }
         }
@@ -23,7 +23,11 @@ namespace diploma.Controllers
         // GET: PhysPerson/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var t = session.QueryOver<Client>().Where(x => x.IsLegalEntity == false && x.LegalEntity.BIN == id).List().FirstOrDefault();
+                return View(t);
+            }
         }
 
         // GET: PhysPerson/Create
@@ -57,10 +61,6 @@ namespace diploma.Controllers
                     itemsTariff.Add(new SelectListItem { Text = a.Name, Value = a.ID.ToString() });
                 }
                 ViewBag.Tariffs = itemsTariff;
-                ViewData["Stations"] = itemsStation;
-                ViewData["Tariffs"] = itemsTariff;
-                ViewData["LivingAddresses"] = itemsAddr;
-                ViewData["RegistrationAddresses"] = itemsRegAddr;
 
                 return View();
             }
@@ -110,7 +110,11 @@ namespace diploma.Controllers
         // GET: PhysPerson/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var t = session.QueryOver<Client>().Where(x => x.IsLegalEntity == false && x.LegalEntity.BIN == id).List().FirstOrDefault();
+                return View(t);
+            }
         }
 
         // POST: PhysPerson/Edit/5
@@ -120,7 +124,7 @@ namespace diploma.Controllers
             try
             {
                 // TODO: Add update logic here
-
+                //
                 return RedirectToAction("Index");
             }
             catch
@@ -132,7 +136,11 @@ namespace diploma.Controllers
         // GET: PhysPerson/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            using (ISession session = NHibernateHelper.OpenSession())
+            {
+                var t = session.QueryOver<Client>().Where(x => x.IsLegalEntity == false && x.LegalEntity.BIN == id).List().FirstOrDefault();
+                return View(t);
+            }
         }
 
         // POST: PhysPerson/Delete/5
@@ -142,7 +150,14 @@ namespace diploma.Controllers
             try
             {
                 // TODO: Add delete logic here
-
+                using (ISession session = NHibernateHelper.OpenSession())
+                {
+                    Client c = session.Get<Client>(id);
+                    ITransaction tr = session.BeginTransaction();
+                    session.Delete(c.PhysPerson);
+                    session.Delete(c);
+                    tr.Commit();
+                }
                 return RedirectToAction("Index");
             }
             catch
