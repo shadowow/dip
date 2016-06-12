@@ -41,9 +41,9 @@ public class ClientMap : ClassMap<diploma.Models.Core.Client>
         Id(x => x.ID).GeneratedBy.Increment();
         Map(x => x.Phone);
         Map(x => x.IsLegalEntity);
-        References(x => x.Address).Cascade.All();
-        References(x => x.Station).Cascade.All();
-        References(x => x.CurrentTariff).Cascade.All();
+        References(x => x.Address).Cascade.All().LazyLoad(Laziness.False);
+        References(x => x.Station).Cascade.All().LazyLoad(Laziness.False);
+        References(x => x.CurrentTariff).Cascade.All().LazyLoad(Laziness.False);
         References(x => x.PhysPerson).Cascade.All().LazyLoad(Laziness.False);
         References(x => x.LegalEntity).Cascade.All().LazyLoad(Laziness.False);
 

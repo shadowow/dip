@@ -47,12 +47,13 @@ namespace diploma.Controllers
                 ViewBag.RegistrationAddresses = itemsRegAddr;
 
                 var stations = session.QueryOver<TeleStation>().List();
-                List<SelectListItem> itemsStation = new List<SelectListItem>();
-                foreach (TeleStation a in stations)
+                List<SelectListItem> items = new List<SelectListItem>();
+                foreach (TeleStation ts in stations)
                 {
-                    itemsStation.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString() });
+                    items.Add(new SelectListItem { Text = ts.ToString(), Value = ts.ID.ToString() });
                 }
-                ViewBag.Stations = itemsStation;
+
+                ViewBag.Stations = items;
 
                 var tariffs = session.QueryOver<Tariff>().List();
                 List<SelectListItem> itemsTariff = new List<SelectListItem>();

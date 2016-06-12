@@ -303,7 +303,6 @@
     <Content Include="Views\Tariff\Create.cshtml" />
     <Content Include="Views\Tariff\Edit.cshtml" />
     <Content Include="Views\Tariff\Delete.cshtml" />
-    <Content Include="Views\PhysPerson\Create.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\UserRole\Details.cshtml" />
     <Content Include="Views\UserRole\Create.cshtml" />
@@ -321,6 +320,7 @@
     <Content Include="Views\Debt\Index.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\PhysPerson\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

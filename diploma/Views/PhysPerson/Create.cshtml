@@ -1,13 +1,13 @@
-﻿@model diploma.Models.Core.Client
+﻿@model diploma.Models.Core.PhysPerson
 
 @{
-    ViewBag.Title = "Добавления абонента физ. лица";
+    ViewBag.Title = "Добавление абонента";
 }
 
-<h2>Добавления абонента</h2>
+<h2>Добавление физ. лица</h2>
 
 
-@using (Html.BeginForm("Create", "PhysPerson", FormMethod.Post)) 
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
@@ -18,22 +18,14 @@
         <div class="form-group">
             <label class="control-label col-md-2">Телефон</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                <input id="Phone" name="Phone" type="text" class="form-control"/>
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">АТС</label>
             <div class="col-md-10">
-                @Html.DropDownList("Stations")
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="control-label col-md-2">Адрес</label>
-            <div class="col-md-10">
-                @Html.DropDownList("LivingAddresses", ViewBag.LivingAddresses as SelectList, new { @class = "form-control" })
+                @Html.DropDownList("Stations", ViewBag.Stations as SelectList, new { @class = "form-control" })
             </div>
         </div>
 
@@ -45,63 +37,70 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label col-md-2">Адрес</label>
+            <div class="col-md-10">
+                @Html.DropDownList("LivingAddresses", ViewBag.LivingAddresses as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="control-label col-md-2">Фамилия</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhysPerson.Surname, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhysPerson.Surname, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Имя</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhysPerson.FirstName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhysPerson.FirstName, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Отчество</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhysPerson.Patronimyc, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhysPerson.Patronimyc, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Patronimyc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Patronimyc, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Серия паспорта</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhysPerson.SerialNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhysPerson.SerialNumber, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.SerialNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SerialNumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Номер паспорта</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhysPerson.PassportNumber, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhysPerson.PassportNumber, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PassportNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PassportNumber, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Место выдачи паспорта</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhysPerson.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhysPerson.PlaceOfIssue, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.PlaceOfIssue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PlaceOfIssue, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <label class="control-label col-md-2">Дата выдачи паспорта</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PhysPerson.DateOfIssue, new { htmlAttributes = new { @type="date", @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.PhysPerson.DateOfIssue, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.DateOfIssue, new { htmlAttributes = new { @type="date", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DateOfIssue, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2">Адрес регистрации</label>
+            <label class="control-label col-md-2">Адрес прописки</label>
             <div class="col-md-10">
                 @Html.DropDownList("RegistrationAddresses", ViewBag.RegistrationAddresses as SelectList, new { @class = "form-control" })
             </div>
@@ -109,14 +108,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добавить" class="btn btn-default" />
+                <input type="submit" value="Сохранить" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("К списку физических лиц", "Index")
+    @Html.ActionLink("К списку физ. лиц", "Index")
 </div>
 
 @section Scripts {
