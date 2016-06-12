@@ -1,5 +1,7 @@
 ﻿using diploma.Models.Core;
 using NHibernate;
+using NHibernate.Criterion;
+using NHibernate.Transform;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +18,13 @@ namespace diploma.Controllers
             using (ISession session = NHibernateHelper.OpenSession())
             {
                 var debts = session.QueryOver<Debt>().Where(x => x.Client.ID == id).List();
-                var t = new List<Bill>();
+                IList<Bill> t = new List<Bill>();
                 if (debts != null && debts.Count > 0)
                 {
-                    t = (List<Bill>)session.QueryOver<Bill>().Where(x => x.Debts.First().Client.ID == id).List();
+                    ISQLQuery query = session.CreateSQLQuery("SELECT b.number as \"Number\", b.\"date\" as \"Date\" FROM \"Bill\" b " + 
+                        "JOIN \"debt_bill\" db ON b.number = db.bill_id " + 
+                        "JOIN \"Debt\" d ON d.id = db.debt_id " + "WHERE d.client_id = " + id);
+                    t = query.SetResultTransformer(Transformers.AliasToBean<Bill>()).List<Bill>();
                 }
 
                 ViewBag.Phone = session.Get<Client>(id).Phone;
