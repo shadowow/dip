@@ -27,7 +27,7 @@
             <label class="control-label col-md-2">Возможность редактирования справочников</label>
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.CanEditReference)
+                    <input id="CanEditReference" name="CanEditReference" value="true" type="checkbox" class="chkBox" />
                     @Html.ValidationMessageFor(model => model.CanEditReference, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -37,7 +37,7 @@
             <label class="control-label col-md-2">Возможность редактировать абонентов</label>
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.CanEditPersonal)
+                    <input id="CanEditPersonal" name="CanEditPersonal" value="true" type="checkbox" class="chkBox" />
                     @Html.ValidationMessageFor(model => model.CanEditPersonal, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -47,7 +47,7 @@
             <label class="control-label col-md-2">Возможность редактировать пользователей</label>
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.CanEditUsers)
+                    <input id="CanEditUsers" name="CanEditUsers" value="true" type="checkbox" class="chkBox" />
                     @Html.ValidationMessageFor(model => model.CanEditUsers, "", new { @class = "text-danger" })
                 </div>
             </div>

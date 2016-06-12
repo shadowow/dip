@@ -41,14 +41,14 @@ namespace diploma.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-            try
+         //   try
             {
                 // TODO: Add insert logic here
                 UserRole role = new UserRole();
                 role.Name = collection.Get("Name");
-                role.CanEditPersonal = Boolean.Parse(collection.Get("CanEditPersonal"));
-                role.CanEditReference = Boolean.Parse(collection.Get("CanEditReference"));
-                role.CanEditUsers = Boolean.Parse(collection.Get("CanEditUsers"));
+                role.CanEditPersonal = Convert.ToBoolean(collection["CanEditPersonal"]);
+                role.CanEditReference = Convert.ToBoolean(collection["CanEditReference"]);
+                role.CanEditUsers = Convert.ToBoolean(collection["CanEditUsers"]); 
                 using (ISession session = NHibernateHelper.OpenSession())
                 {
                     ITransaction tr = session.BeginTransaction();
@@ -57,7 +57,7 @@ namespace diploma.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            catch
+        //    catch
             {
                 return View();
             }
