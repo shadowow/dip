@@ -11,11 +11,12 @@ namespace diploma.Controllers
     public class DebtController : Controller
     {
         // GET: Debt
-        public ActionResult Index(int clientID)
+        public ActionResult Index(int id)
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var t = session.QueryOver<TeleStation>().Where(x => x.Clients.FirstOrDefault().ID == clientID).List();
+                var t = session.QueryOver<Debt>().Where(x => x.Client.ID == id).List();
+                ViewBag.Phone = session.Get<Client>(id).Phone;
                 return View(t);
             }
         }
