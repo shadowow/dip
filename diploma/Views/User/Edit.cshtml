@@ -28,7 +28,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Пароль</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @type="password", @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
             <label class="control-label col-md-2">Роль пользователя</label>
             <div class="col-md-10">
-                @Html.DropDownList("Роли", ViewBag.Roles as SelectList, new { @class = "form-control" })
+                @Html.DropDownList("Roles", ViewBag.Roles as SelectList, new { @class = "form-control" })
             </div>
         </div>
 

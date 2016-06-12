@@ -41,7 +41,7 @@ namespace diploma.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
-         //   try
+            try
             {
                 // TODO: Add insert logic here
                 UserRole role = new UserRole();
@@ -57,7 +57,7 @@ namespace diploma.Controllers
                 }
                 return RedirectToAction("Index");
             }
-        //    catch
+            catch
             {
                 return View();
             }

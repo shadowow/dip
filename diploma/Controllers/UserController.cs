@@ -85,11 +85,11 @@ namespace diploma.Controllers
                 {
                     if (r.ID == m.Role.ID)
                     {
-                        items.Add(new SelectListItem { Text = r.ToString(), Value = r.ID.ToString(), Selected = true });
+                        items.Add(new SelectListItem { Text = r.Name, Value = r.ID.ToString(), Selected = true });
                     }
                     else
                     {
-                        items.Add(new SelectListItem { Text = r.ToString(), Value = r.ID.ToString(), Selected = false });
+                        items.Add(new SelectListItem { Text = r.Name, Value = r.ID.ToString(), Selected = false });
                     }
                 }
 
@@ -114,7 +114,7 @@ namespace diploma.Controllers
                     user.Password = collection.Get("Password");
                     user.Role = role;
                     ITransaction tr = session.BeginTransaction();
-                    session.Save(user);
+                    session.Update(user);
                     tr.Commit();
                 }
 
