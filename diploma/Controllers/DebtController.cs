@@ -17,6 +17,7 @@ namespace diploma.Controllers
             {
                 var t = session.QueryOver<Debt>().Where(x => x.Client.ID == id).List();
                 ViewBag.Phone = session.Get<Client>(id).Phone;
+                ViewBag.ID = id;
                 return View(t);
             }
         }

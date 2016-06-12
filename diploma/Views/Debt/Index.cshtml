@@ -6,6 +6,11 @@
 
 <h2>Задолженности абонента @ViewBag.Phone</h2>
 
+<p>
+    <a href="/Bill/Create?id=@ViewBag.ID">Выставить счёт</a> | 
+    <a href="/Bill/Index?id=@ViewBag.ID">Все счета абонента</a> 
+</p>
+
 <table class="table">
     <tr>
         <th>
@@ -19,7 +24,10 @@
         <th>
             Дата начисления
         </th>
-        <th></th>
+
+        <th>
+            Погашена
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -34,10 +42,7 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @if (item.PaymentsStory.Count != 0)
-            {
-                @Html.ActionLink("Оплачена","Index","Payment", new { id = item.Client.ID })
-            }
+            @Html.DisplayFor(modelItem => item.IsPaid)
         </td>
     </tr>
 }

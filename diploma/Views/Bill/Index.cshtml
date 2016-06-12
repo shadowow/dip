@@ -1,13 +1,21 @@
 ﻿@model IEnumerable<diploma.Models.Core.Bill>
 
+@{
+    ViewBag.Title = "Счета";
+}
 
+<h2>Счета абонента @ViewBag.Phone</h2>
+
+<p>
+    @Html.ActionLink("Сформировать новый счёт", "Create")
+</p>
 <table class="table">
     <tr>
         <th>
-            Абонент
+            Номер счёта
         </th>
         <th>
-            Номер счёта
+            Дата
         </th>
         <th></th>
     </tr>
@@ -15,14 +23,15 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Client.Phone)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Number)
         </td>
         <td>
-            @Html.ActionLink("Просмотр", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Удалить", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.Number }) |
+            @Html.ActionLink("Подробности", "Details", new { id=item.Number }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Number })
         </td>
     </tr>
 }

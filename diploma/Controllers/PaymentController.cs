@@ -15,8 +15,8 @@ namespace diploma.Controllers
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var t = session.QueryOver<Payment>().Where(x => x.Debt.Client.ID == clientID).List();
-                return View(t);
+               // var t = session.QueryOver<Payment>().Where(x => x.Debt.Client.ID == clientID).List();
+                return View();
             }
         }
     }
