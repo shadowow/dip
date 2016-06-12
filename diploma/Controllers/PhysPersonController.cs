@@ -25,7 +25,7 @@ namespace diploma.Controllers
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var t = session.QueryOver<Client>().Where(x => x.IsLegalEntity == false && x.LegalEntity.BIN == id).List().FirstOrDefault();
+                var t = session.Get<Client>(id);
                 return View(t);
             }
         }

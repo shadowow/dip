@@ -39,7 +39,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Address.ToString())
+            @Html.DisplayFor(model => model.Address.ID)
         </dd>
 
         <dt>
@@ -71,7 +71,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhysPerson.SerialNumber + ' '+ model.PhysPerson.PassportNumber)
+            @Html.DisplayFor(model => model.PhysPerson.SerialNumber) @Html.DisplayFor(model => model.PhysPerson.PassportNumber)
         </dd>
 
         <dt>
@@ -87,7 +87,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PhysPerson.DateOfIssue)
+            @Html.DisplayFor(model => model.PhysPerson.DateOfIssue.Date)
         </dd>
 
         <dt>
@@ -101,6 +101,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ID }) |
+    
     @Html.ActionLink("К списку физ. лиц", "Index")
 </p>

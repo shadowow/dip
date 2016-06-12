@@ -21,9 +21,10 @@ namespace diploma.Controllers
                 IList<Bill> t = new List<Bill>();
                 if (debts != null && debts.Count > 0)
                 {
-                    ISQLQuery query = session.CreateSQLQuery("SELECT b.number as \"Number\", b.\"date\" as \"Date\" FROM \"Bill\" b " + 
+                    ISQLQuery query = session.CreateSQLQuery("SELECT DISTINCT b.number as \"Number\", b.\"date\" as \"Date\" FROM \"Bill\" b " + 
                         "JOIN \"debt_bill\" db ON b.number = db.bill_id " + 
-                        "JOIN \"Debt\" d ON d.id = db.debt_id " + "WHERE d.client_id = " + id);
+                        "JOIN \"Debt\" d ON d.id = db.debt_id " + "WHERE d.client_id = " + id +
+                        " ORDER BY b.number");
                     t = query.SetResultTransformer(Transformers.AliasToBean<Bill>()).List<Bill>();
                 }
 
