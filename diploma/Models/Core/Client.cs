@@ -14,13 +14,14 @@ namespace diploma.Models.Core
         public virtual TeleStation Station { get; set; }
         public virtual Tariff CurrentTariff { get; set; }
         public virtual Address Address { get; set; }
+        public virtual double Balance { get; set; }
         public virtual bool IsLegalEntity { get; set; }
         public virtual PhysPerson PhysPerson { get; set; }
         public virtual Person LegalEntity { get; set; }
 
         public virtual ISet<Debt> Debts { get; set; }
         public virtual ISet<Call> CallsStory { get; set; }
-        public virtual ISet<Bill> Bills { get; set; }
+        public virtual ISet<Payment> Payments { get; set; }
 
      
        
@@ -29,7 +30,7 @@ namespace diploma.Models.Core
         {
             Debts = new HashSet<Debt>();
             CallsStory = new HashSet<Call>();
-            Bills = new HashSet<Bill>();
+            Payments = new HashSet<Payment>();
         }
     }
 }
@@ -44,10 +45,11 @@ public class ClientMap : ClassMap<diploma.Models.Core.Client>
         References(x => x.Address).Cascade.All().LazyLoad(Laziness.False);
         References(x => x.Station).Cascade.All().LazyLoad(Laziness.False);
         References(x => x.CurrentTariff).Cascade.All().LazyLoad(Laziness.False);
+        Map(x => x.Balance);
         References(x => x.PhysPerson).Cascade.All().LazyLoad(Laziness.False);
         References(x => x.LegalEntity).Cascade.All().LazyLoad(Laziness.False);
 
-        HasMany(x => x.Bills).Inverse();
+        HasMany(x => x.Payments).Inverse();
         HasMany(x => x.Debts).Inverse();
         HasMany(x => x.CallsStory).Inverse();
     }

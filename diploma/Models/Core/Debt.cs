@@ -12,12 +12,13 @@ namespace diploma.Models.Core
         public virtual Client Client { get; set; }
         public virtual float Amount { get; set; }
         public virtual DateTime Date { get; set; }
+        public virtual bool IsPaid { get; set; }
 
-        public virtual ISet<Payment> PaymentsStory { get; set; }
+        public virtual ISet<Bill> Bills { get; set; }
 
         public Debt()
         {
-            PaymentsStory = new HashSet<Payment>();
+            Bills = new HashSet<Bill>();
         }
     }
 }
@@ -30,6 +31,7 @@ public class Debtmap : ClassMap<diploma.Models.Core.Debt>
         References(x => x.Client).Cascade.All();
         Map(x => x.Amount);
         Map(x => x.Date);
-        HasMany(x => x.PaymentsStory).Inverse();
+        Map(x => x.IsPaid);
+        HasManyToMany(x => x.Bills).Cascade.All().Table("Debt_Bill");
     }
 }
