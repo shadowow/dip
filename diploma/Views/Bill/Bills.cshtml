@@ -1,21 +1,20 @@
 ﻿@model IEnumerable<diploma.Models.Core.Bill>
 
 @{
-    ViewBag.Title = "Счета";
+    ViewBag.Title = "Счета пользователей";
 }
 
-<h2>Счета абонента @ViewBag.Phone</h2>
+<h2>Счета пользователей</h2>
 
 <p>
-    @Html.ActionLink("Сформировать новый счёт", "Add", new { id = ViewBag.ID})
 </p>
 <table class="table">
     <tr>
         <th>
-            Номер счёта
+            Номер счета
         </th>
         <th>
-            Дата
+            Дата выставления
         </th>
         <th></th>
     </tr>
@@ -29,7 +28,7 @@
             @Html.DisplayFor(modelItem => item.Date)
         </td>
         <td>
-            @Html.ActionLink("Подробности", "Details", new { id=item.Number }) 
+            @Html.ActionLink("Подробнее", "Details", new { id = item.Number})
         </td>
     </tr>
 }

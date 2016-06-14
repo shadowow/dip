@@ -314,13 +314,15 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Delete.cshtml" />
     <Content Include="Views\PhysPerson\Details.cshtml" />
-    <Content Include="Views\PhysPerson\Edit.cshtml" />
     <Content Include="Views\PhysPerson\Delete.cshtml" />
     <Content Include="Views\Call\Index.cshtml" />
     <Content Include="Views\Debt\Index.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Person\Index.cshtml" />
     <Content Include="Views\PhysPerson\Create.cshtml" />
+    <Content Include="Views\PhysPerson\Edit.cshtml" />
+    <Content Include="Views\Bill\Bills.cshtml" />
+    <Content Include="Views\Bill\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

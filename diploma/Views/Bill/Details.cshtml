@@ -1,0 +1,43 @@
+﻿@model diploma.Models.Core.Bill
+
+@{
+    ViewBag.Title = "Просмотр счёта";
+}
+
+<h2>Просмотр счёта абонента @Html.ViewBag.Client</h2>
+
+<div>
+    <h4>Счёт</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Номер счёта
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Number) 
+            
+        </dd>      
+
+        <dt>
+            Время выставления
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            Суммарный объем (в руб.)
+        </dt>
+
+        <dd>
+            @Html.ViewBag.Sum
+        </dd>
+
+        
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("К списку счетов", "Bills")
+</p>

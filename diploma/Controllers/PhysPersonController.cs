@@ -113,7 +113,44 @@ namespace diploma.Controllers
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                var t = session.QueryOver<Client>().Where(x => x.IsLegalEntity == false && x.LegalEntity.BIN == id).List().FirstOrDefault();
+                var t = session.Get<Client>(id);
+                ViewBag.Phone = t.Phone;
+                var addresses = session.QueryOver<Address>().List();
+                List<SelectListItem> itemsAddr = new List<SelectListItem>();
+                List<SelectListItem> itemsRegAddr = new List<SelectListItem>();
+                foreach (Address a in addresses)
+                {
+                    if (t.Address == a)
+                        itemsAddr.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString(), Selected = true });
+                    else itemsAddr.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString(), Selected = false });
+                    if (t.PhysPerson.CurrentAddress == a)
+                        itemsRegAddr.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString(), Selected = true });
+                    else itemsRegAddr.Add(new SelectListItem { Text = a.ToString(), Value = a.ID.ToString(), Selected = false });
+                }
+                ViewBag.LivingAddresses = itemsAddr;
+                ViewBag.RegistrationAddresses = itemsRegAddr;
+
+                var stations = session.QueryOver<TeleStation>().List();
+                List<SelectListItem> items = new List<SelectListItem>();
+                foreach (TeleStation ts in stations)
+                {
+                    if (t.Station == ts)
+                        items.Add(new SelectListItem { Text = ts.ToString(), Value = ts.ID.ToString(), Selected = true });
+                    else
+                        items.Add(new SelectListItem { Text = ts.ToString(), Value = ts.ID.ToString(), Selected = false });
+                }
+
+                ViewBag.Stations = items;
+
+                var tariffs = session.QueryOver<Tariff>().List();
+                List<SelectListItem> itemsTariff = new List<SelectListItem>();
+                foreach (Tariff a in tariffs)
+                {
+                    if (t.CurrentTariff == a)
+                        itemsTariff.Add(new SelectListItem { Text = a.Name, Value = a.ID.ToString(), Selected = true });
+                    else itemsTariff.Add(new SelectListItem { Text = a.Name, Value = a.ID.ToString(), Selected = false });
+                }
+                ViewBag.Tariffs = itemsTariff;
                 return View(t);
             }
         }
@@ -124,8 +161,33 @@ namespace diploma.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-                //
+                using (ISession session = NHibernateHelper.OpenSession())
+                {
+                    Address livAddress = session.Get<Address>(int.Parse(collection.Get("LivingAddresses")));
+                    Address regAddress = session.Get<Address>(int.Parse(collection.Get("RegistrationAddresses")));
+                    TeleStation station = session.Get<TeleStation>(int.Parse(collection.Get("Stations")));
+                    Tariff tariff = session.Get<Tariff>(int.Parse(collection.Get("Tariffs")));
+
+                    Client client = new Client();
+                    client.ID = id;
+                    client.IsLegalEntity = false;
+                    client.Phone = collection.Get("Phone");
+                    client.Address = livAddress;
+                    client.CurrentTariff = tariff;
+                    client.Station = station;
+                    client.PhysPerson = new PhysPerson();
+                    client.PhysPerson.CurrentAddress = regAddress;
+                    client.PhysPerson.FirstName = collection.Get("FirstName");
+                    client.PhysPerson.Surname = collection.Get("Surname");
+                    client.PhysPerson.Patronimyc = collection.Get("Patronimyc");
+                    client.PhysPerson.PassportNumber = collection.Get("PassportNumber");
+                    client.PhysPerson.SerialNumber = int.Parse(collection.Get("SerialNumber"));
+                    client.PhysPerson.DateOfIssue = DateTime.Parse(collection.Get("DateOfIssue"));
+                    client.PhysPerson.PlaceOfIssue = collection.Get("PlaceOfIssue");
+                    ITransaction tr = session.BeginTransaction();
+                    session.Update(client);
+                    tr.Commit();
+                }
                 return RedirectToAction("Index");
             }
             catch

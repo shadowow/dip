@@ -26,6 +26,6 @@ public class BillMap : ClassMap<diploma.Models.Core.Bill>
     {
         Id(x => x.Number).GeneratedBy.Increment();
         Map(x => x.Date);
-        HasManyToMany(x => x.Debts).Cascade.All().Inverse().Table("Debt_Bill");
+        HasManyToMany(x => x.Debts).Inverse().Table("Debt_Bill");
     }
 }
